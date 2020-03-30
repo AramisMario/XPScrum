@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api', api)
 
 var connection = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.username,
+    host: 'localhost',
+    user: 'rootscrum',
     password: process.env.password,
     database: process.env.database
 });
