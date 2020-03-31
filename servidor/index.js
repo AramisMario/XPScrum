@@ -24,7 +24,7 @@ var connection = mysql.createConnection({
     database: process.env.database
 });
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
     app.listen(PORT, ()=> console.log(`Api rest run on port ${PORT}`))
 }).catch( (err)=>{
     console.error(err);

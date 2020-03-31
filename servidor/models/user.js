@@ -7,25 +7,18 @@ const hash = require('./../plugins/hashPassword');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('users', {
-    rolId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'rols',
-        key: 'id'
-      }
-    },
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
   }, {
+    timestamps:false,
     defaultScope: {
       attributes: { exclude: ['password'] }
     },
   });
 
   User.associate = function(models) {
-    User.belongsTo(models.rols);
+   User.hasMany(models.rols);
   };
 
   User.prototype.comparePassword = function (candidatePassword, cb) {
